@@ -7,23 +7,23 @@ on:
 
 jobs:
   publish:
-    name: "Publish release"
-    runs-on: "ubuntu-latest"
+    name: Publish release
+    runs-on: ubuntu-24.04
 
     environment:
       name: deploy
 
     steps:
-      - uses: "actions/checkout@v4"
-      - uses: "actions/setup-python@v5"
+      - uses: actions/checkout@v4
+      - uses: MatteoH2O1999/setup-python@v4
         with:
-          python-version: "3.11"
-      - name: "Install dependencies"
-        run: "scripts/install"
-      - name: "Build package & docs"
-        run: "scripts/build"
-      - name: "Publish to PyPI & deploy docs"
-        run: "scripts/publish"
+          python-version: '3.11'
+      - name: Install dependencies
+        run: scripts/install
+      - name: Build package & docs
+        run: scripts/build
+      - name: Publish to PyPI & deploy docs
+        run: scripts/publish
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
